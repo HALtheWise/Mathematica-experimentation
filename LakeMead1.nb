@@ -1,0 +1,1175 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     45485,       1166]
+NotebookOptionsPosition[     42961,       1079]
+NotebookOutlinePosition[     43298,       1094]
+CellTagsIndexPosition[     43255,       1091]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Attempt 1: no units", "Section",
+ CellChangeTimes->{{3.6631287953459053`*^9, 3.663128800981452*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"inflow", " ", "=", " ", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"evaporation", " ", "=", " ", "0.2"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"outflow", "[", "lake_", "]"}], " ", ":=", " ", 
+   RowBox[{"Max", "[", 
+    RowBox[{"0", ",", 
+     RowBox[{"lake", "-", "10"}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.663127492619728*^9, 3.663127627660967*^9}, {
+  3.663127874681006*^9, 3.6631278799339523`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"totalFlow", "[", "lake_", "]"}], ":=", 
+  RowBox[{"inflow", "-", "evaporation", "-", 
+   RowBox[{"outflow", "[", "lake", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.663127633091852*^9, 3.6631276523422947`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"level", "'"}], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{"totalFlow", "[", 
+       RowBox[{"level", "[", "t", "]"}], "]"}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"level", "[", "0", "]"}], "\[Equal]", "0"}]}], " ", "}"}], ",", 
+   "level", ",", "t"}], "]"}]], "Input",
+ CellChangeTimes->{{3.663127659251965*^9, 3.66312772021811*^9}, {
+  3.6631279019455357`*^9, 3.66312790925742*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"DSolve", "::", "bvnul"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"For some branches of the general solution, the given \
+boundary conditions lead to an empty solution. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/DSolve/bvnul\\\", ButtonNote -> \
+\\\"DSolve::bvnul\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.663127903617591*^9, 3.663127910776586*^9}, 
+   3.663129121948042*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellChangeTimes->{{3.663127709780171*^9, 3.663127721080852*^9}, {
+   3.663127888044278*^9, 3.6631279107840157`*^9}, 3.663129121949224*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"s", "=", 
+     RowBox[{"NDSolve", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"level", "'"}], "[", "t", "]"}], "\[Equal]", 
+          RowBox[{"totalFlow", "[", 
+           RowBox[{"level", "[", "t", "]"}], "]"}]}], ",", " ", 
+         RowBox[{
+          RowBox[{"level", "[", "0", "]"}], "\[Equal]", "0"}]}], " ", "}"}], 
+       ",", "level", ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "max"}], "}"}]}], "]"}]}], ";", "\n", 
+    RowBox[{"Plot", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"level", "[", "t", "]"}], "*", 
+        TemplateBox[{"1","\"L\"","liters","\"Liters\""},
+         "Quantity"]}], "/.", "s"}], " ", ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "max"}], "}"}], ",", 
+      RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+      RowBox[{"AxesLabel", "\[Rule]", " ", "Automatic"}]}], "]"}]}], ",", " ", 
+   RowBox[{"{", " ", 
+    RowBox[{"max", ",", "1", ",", "100"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.663127791650167*^9, 3.663127868634376*^9}, {
+  3.66312792403153*^9, 3.663127924156497*^9}, {3.6631280889956703`*^9, 
+  3.6631281022251043`*^9}, {3.663128191685638*^9, 3.663128243512278*^9}, {
+  3.6631291428470583`*^9, 3.663129219307909*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`max$$ = 22.700000000000003`, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`max$$], 1, 100}}, Typeset`size$$ = {
+    360., {99., 104.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`max$142264$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`max$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`max$$, $CellContext`max$142264$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`s = 
+        NDSolve[{
+          Derivative[
+            1][$CellContext`level][$CellContext`t] == $CellContext`totalFlow[
+             $CellContext`level[$CellContext`t]], $CellContext`level[0] == 
+           0}, $CellContext`level, {$CellContext`t, 0, $CellContext`max$$}]; 
+       Plot[
+         ReplaceAll[$CellContext`level[$CellContext`t] 
+          Quantity[1, "Liters"], $CellContext`s], {$CellContext`t, 
+          0, $CellContext`max$$}, PlotRange -> All, AxesLabel -> Automatic]), 
+      "Specifications" :> {{$CellContext`max$$, 1, 100}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{407., {143., 150.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.66312794942564*^9, {3.663128094057905*^9, 3.6631281026849422`*^9}, {
+   3.663128219683098*^9, 3.6631282443178387`*^9}, 3.663129122071477*^9, {
+   3.663129153069496*^9, 3.6631292202535877`*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Attempt 2: Units", "Section",
+ CellChangeTimes->{{3.66312880874477*^9, 3.663128813389058*^9}}],
+
+Cell["\<\
+Result: failure. NDSolve[] simply doesn\[CloseCurlyQuote]t [yet] support \
+Quantities with units.\
+\>", "Text",
+ CellChangeTimes->{{3.6631620426132183`*^9, 3.663162078807526*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"inflow", " ", "=", " ", 
+   TemplateBox[{
+    "1",RowBox[{
+      "\"L\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", "\"s\""}],
+     "liters per second",FractionBox["\"Liters\"", "\"Seconds\""]},
+    "Quantity"]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"evaporation", " ", "=", " ", 
+   TemplateBox[{
+    "0.2",RowBox[{
+      "\"L\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", "\"s\""}],
+     "liters per second",FractionBox["\"Liters\"", "\"Seconds\""]},
+    "Quantity"]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"outflow", "[", "lake_", "]"}], " ", ":=", " ", 
+   RowBox[{"Max", "[", 
+    RowBox[{
+     TemplateBox[{
+      "0",RowBox[{
+        "\"L\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", "\"s\""}],
+       "liters per second",FractionBox["\"Liters\"", "\"Seconds\""]},
+      "Quantity"], ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"lake", "-", 
+        TemplateBox[{"10","\"L\"","liters","\"Liters\""},
+         "Quantity"]}], ")"}], "*", 
+      TemplateBox[{"1","\"Hz\"","hertz","\"Hertz\""},
+       "Quantity"]}]}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.663127492619728*^9, 3.663127627660967*^9}, {
+  3.663127874681006*^9, 3.6631278799339523`*^9}, {3.66312883312969*^9, 
+  3.6631289318387527`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"totalFlow", "[", "lake_", "]"}], ":=", 
+  RowBox[{"inflow", "-", "evaporation", "-", 
+   RowBox[{"outflow", "[", "lake", "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.663127633091852*^9, 3.6631276523422947`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"level", "'"}], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{"totalFlow", "[", 
+       RowBox[{"level", "[", "t", "]"}], "]"}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"level", "[", "0", "]"}], "\[Equal]", "0"}]}], " ", "}"}], ",", 
+   "level", ",", "t"}], "]"}]], "Input",
+ CellChangeTimes->{{3.663127659251965*^9, 3.66312772021811*^9}, {
+  3.6631279019455357`*^9, 3.66312790925742*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"DSolve", "::", "bvnul"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"For some branches of the general solution, the given \
+boundary conditions lead to an empty solution. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/DSolve/bvnul\\\", ButtonNote -> \
+\\\"DSolve::bvnul\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{{3.663127903617591*^9, 3.663127910776586*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellChangeTimes->{{3.663127709780171*^9, 3.663127721080852*^9}, {
+  3.663127888044278*^9, 3.6631279107840157`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"s", "=", 
+  RowBox[{"NDSolve", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"level", "'"}], "[", "t", "]"}], "\[Equal]", 
+       RowBox[{"totalFlow", "[", 
+        RowBox[{"level", "[", "t", "]"}], "]"}]}], ",", " ", 
+      RowBox[{
+       RowBox[{"level", "[", "0", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+    "level", ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "30"}], "}"}]}], "]"}]}], "\n", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"level", "[", "t", "]"}], "/.", "s"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", 
+     NamespaceBox["LinguisticAssistant",
+      DynamicModuleBox[{Typeset`query$$ = "0s", Typeset`boxes$$ = 
+       TemplateBox[{"0", "\"s\"", "seconds", "\"Seconds\""}, "Quantity", 
+        SyntaxForm -> Mod], 
+       Typeset`allassumptions$$ = {{
+        "type" -> "MultiClash", "word" -> "", "template" -> 
+         "Assuming ${word1} is referring to ${desc1}. Use \"${word2}\" as \
+${desc2}. Use \"${word3}\" as ${desc3}. Use \"${word4}\" as ${desc4}.", 
+         "count" -> "4", 
+         "Values" -> {{
+           "name" -> "Unit", "word" -> "s", "desc" -> "a unit", "input" -> 
+            "*MC.0s-_*Unit-"}, {
+           "name" -> "Variable", "word" -> "s", "desc" -> "a variable", 
+            "input" -> "*MC.0s-_*Variable-"}, {
+           "name" -> "Decade", "word" -> "0s", "desc" -> "a decade", "input" -> 
+            "*MC.0s-_*Decade-"}, {
+           "name" -> "Century", "word" -> "0s", "desc" -> "a century", 
+            "input" -> "*MC.0s-_*Century-"}}}}, Typeset`assumptions$$ = {}, 
+       Typeset`open$$ = {1, 2}, Typeset`querystate$$ = {
+       "Online" -> True, "Allowed" -> True, "mparse.jsp" -> 
+        0.56623`6.204537868926513, "Messages" -> {}}}, 
+       DynamicBox[ToBoxes[
+         AlphaIntegration`LinguisticAssistantBoxes["", 4, Automatic, 
+          Dynamic[Typeset`query$$], 
+          Dynamic[Typeset`boxes$$], 
+          Dynamic[Typeset`allassumptions$$], 
+          Dynamic[Typeset`assumptions$$], 
+          Dynamic[Typeset`open$$], 
+          Dynamic[Typeset`querystate$$]], StandardForm],
+        ImageSizeCache->{97., {9., 21.}},
+        TrackedSymbols:>{
+         Typeset`query$$, Typeset`boxes$$, Typeset`allassumptions$$, 
+          Typeset`assumptions$$, Typeset`open$$, Typeset`querystate$$}],
+       DynamicModuleValues:>{},
+       UndoTrackedVariables:>{Typeset`open$$}],
+      BaseStyle->{"Deploy"},
+      DeleteWithContents->True,
+      Editable->False,
+      SelectWithContents->True], ",", 
+     TemplateBox[{"30","\"s\"","seconds","\"Seconds\""},
+      "Quantity"]}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.663127791650167*^9, 3.663127868634376*^9}, {
+  3.66312792403153*^9, 3.663127924156497*^9}, {3.6631280889956703`*^9, 
+  3.6631281022251043`*^9}, {3.663128191685638*^9, 3.663128243512278*^9}, {
+  3.663128957845599*^9, 3.663128958129917*^9}, {3.663129014224173*^9, 
+  3.6631290581791058`*^9}, {3.663129091630623*^9, 3.663129112606699*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NDSolve", "::", "ndnum"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Encountered non-numerical value for a derivative at \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"t\\\"}]\\)\[NoBreak] == \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"0.`\\\"}]\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NDSolve/ndnum\\\", \
+ButtonNote -> \\\"NDSolve::ndnum\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.663129113277505*^9}}],
+
+Cell[BoxData[
+ RowBox[{"NDSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["level", "\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"Max", "[", 
+         RowBox[{
+          
+          TemplateBox[{
+           "0",RowBox[{
+             "\"L\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+              "\"s\""}],"liters per second",FractionBox[
+            "\"Liters\"", "\"Seconds\""]},
+           "Quantity"], ",", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"level", "[", "t", "]"}], "+", 
+             TemplateBox[{RowBox[{"-", "10"}],"\"L\"","liters","\"Liters\""},
+              "Quantity"]}], ")"}], " ", 
+           RowBox[{"(", 
+            TemplateBox[{"1","\"Hz\"","hertz","\"Hertz\""},
+             "Quantity"], ")"}]}]}], "]"}]}], "+", 
+       TemplateBox[{
+        "0.8`",RowBox[{
+          "\"L\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+           "\"s\""}],"liters per second",FractionBox[
+         "\"Liters\"", "\"Seconds\""]},
+        "Quantity"]}]}], ",", 
+     RowBox[{
+      RowBox[{"level", "[", "0", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+   "level", ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "30"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.6631290586724787`*^9, {3.663129101815722*^9, 3.663129113285228*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NDSolve", "::", "ndnum"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Encountered non-numerical value for a derivative at \
+\[NoBreak]\\!\\(\\*TemplateBox[List[\\\"0.0006128571428571429`\\\", \
+\\\"\\\\\\\"s\\\\\\\"\\\", \\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \
+\\\"Quantity\\\", Rule[SyntaxForm, Mod]]\\)\[NoBreak] == \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"0.`\\\"}]\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NDSolve/ndnum\\\", \
+ButtonNote -> \\\"NDSolve::ndnum\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.6631291133276043`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ReplaceAll", "::", "reps"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"NDSolve\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"level\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \
+TemplateBox[List[\\\"0.0006128571428571429`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \
+\\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", \
+Rule[SyntaxForm, Mod]], \\\"]\\\"}], \\\"\[Equal]\\\", \
+RowBox[{RowBox[{\\\"-\\\", RowBox[{\\\"Max\\\", \\\"[\\\", RowBox[{RowBox[{\\\
+\"Quantity\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Times\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}], \\\"]\\\"}]}], \\\"+\\\", RowBox[{\\\"Quantity\\\", \
+\\\"[\\\", RowBox[{\\\"0.8`\\\", \\\",\\\", \
+RowBox[{\\\"\\\\\\\"Liters\\\\\\\"\\\", \\\" \\\", RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}]}], \\\"]\\\"}]}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"level\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \
+\\\"\[Equal]\\\", \\\"0\\\"}]}], \\\"}\\\"}], \\\",\\\", \\\"level\\\", \\\",\
+\\\", RowBox[{\\\"{\\\", \
+RowBox[{TemplateBox[List[\\\"0.0006128571428571429`\\\", \
+\\\"\\\\\\\"s\\\\\\\"\\\", \\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \
+\\\"Quantity\\\", Rule[SyntaxForm, Mod]], \\\",\\\", \\\"0\\\", \\\",\\\", \\\
+\"30\\\"}], \\\"}\\\"}]}], \\\"]\\\"}], \\\"}\\\"}]\\)\[NoBreak] is neither a \
+list of replacement rules nor a valid dispatch table, and so cannot be used \
+for replacing. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/ReplaceAll/reps\\\", ButtonNote -> \
+\\\"ReplaceAll::reps\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.6631291133511972`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NDSolve", "::", "ndnum"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Encountered non-numerical value for a derivative at \
+\[NoBreak]\\!\\(\\*TemplateBox[List[\\\"0.0006128571428571429`\\\", \
+\\\"\\\\\\\"s\\\\\\\"\\\", \\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \
+\\\"Quantity\\\", Rule[SyntaxForm, Mod]]\\)\[NoBreak] == \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"0.`\\\"}]\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NDSolve/ndnum\\\", \
+ButtonNote -> \\\"NDSolve::ndnum\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.6631291133772507`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ReplaceAll", "::", "reps"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"NDSolve\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"level\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \
+TemplateBox[List[\\\"0.0006128571428571429`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \
+\\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", \
+Rule[SyntaxForm, Mod]], \\\"]\\\"}], \\\"\[Equal]\\\", \
+RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"1.`\\\"}], \\\" \\\", \
+RowBox[{\\\"Max\\\", \\\"[\\\", RowBox[{RowBox[{\\\"Quantity\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\",\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\"]\\\"}]}], \\\"+\\\", RowBox[{\\\"Quantity\\\", \\\"[\\\", RowBox[{\\\"0.8`\
+\\\", \\\",\\\", RowBox[{\\\"\\\\\\\"Liters\\\\\\\"\\\", \\\" \\\", \
+RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \\\"]\\\"}]}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"level\\\", \\\"[\\\", \\\"0.`\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", \\\"0.`\\\"}]}], \\\"}\\\"}], \\\",\\\", \\\"level\\\", \\\",\\\
+\", RowBox[{\\\"{\\\", \
+RowBox[{TemplateBox[List[\\\"0.0006128571428571429`\\\", \
+\\\"\\\\\\\"s\\\\\\\"\\\", \\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \
+\\\"Quantity\\\", Rule[SyntaxForm, Mod]], \\\",\\\", \\\"0.`\\\", \\\",\\\", \
+\\\"30.`\\\"}], \\\"}\\\"}]}], \\\"]\\\"}], \\\"}\\\"}]\\)\[NoBreak] is \
+neither a list of replacement rules nor a valid dispatch table, and so cannot \
+be used for replacing. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/ReplaceAll/reps\\\", ButtonNote -> \
+\\\"ReplaceAll::reps\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.663129113402384*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NDSolve", "::", "ndnum"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Encountered non-numerical value for a derivative at \
+\[NoBreak]\\!\\(\\*TemplateBox[List[\\\"0.6128577551020409`\\\", \
+\\\"\\\\\\\"s\\\\\\\"\\\", \\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \
+\\\"Quantity\\\", Rule[SyntaxForm, Mod]]\\)\[NoBreak] == \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"0.`\\\"}]\\)\[NoBreak]. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NDSolve/ndnum\\\", \
+ButtonNote -> \\\"NDSolve::ndnum\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.663129113433462*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \
+\[NoBreak]\\!\\(\\*StyleBox[RowBox[{\\\"NDSolve\\\", \\\"::\\\", \
+\\\"ndnum\\\"}], \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during \
+this calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.663129113456696*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ReplaceAll", "::", "reps"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"NDSolve\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"level\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \
+TemplateBox[List[\\\"0.6128577551020409`\\\", \\\"\\\\\\\"s\\\\\\\"\\\", \
+\\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", \
+Rule[SyntaxForm, Mod]], \\\"]\\\"}], \\\"\[Equal]\\\", \
+RowBox[{RowBox[{\\\"-\\\", RowBox[{\\\"Max\\\", \\\"[\\\", RowBox[{RowBox[{\\\
+\"Quantity\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Times\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}], \\\"]\\\"}]}], \\\"+\\\", RowBox[{\\\"Quantity\\\", \
+\\\"[\\\", RowBox[{\\\"0.8`\\\", \\\",\\\", \
+RowBox[{\\\"\\\\\\\"Liters\\\\\\\"\\\", \\\" \\\", RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}]}], \\\"]\\\"}]}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"level\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \
+\\\"\[Equal]\\\", \\\"0\\\"}]}], \\\"}\\\"}], \\\",\\\", \\\"level\\\", \\\",\
+\\\", RowBox[{\\\"{\\\", \
+RowBox[{TemplateBox[List[\\\"0.6128577551020409`\\\", \\\"\\\\\\\"s\\\\\\\"\\\
+\", \\\"seconds\\\", \\\"\\\\\\\"Seconds\\\\\\\"\\\"], \\\"Quantity\\\", \
+Rule[SyntaxForm, Mod]], \\\",\\\", \\\"0\\\", \\\",\\\", \\\"30\\\"}], \
+\\\"}\\\"}]}], \\\"]\\\"}], \\\"}\\\"}]\\)\[NoBreak] is neither a list of \
+replacement rules nor a valid dispatch table, and so cannot be used for \
+replacing. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\
+\\\", ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/ReplaceAll/reps\\\
+\", ButtonNote -> \\\"ReplaceAll::reps\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.663129113480671*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \
+\[NoBreak]\\!\\(\\*StyleBox[RowBox[{\\\"ReplaceAll\\\", \\\"::\\\", \
+\\\"reps\\\"}], \\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during \
+this calculation. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", \
+ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/General/stop\\\", ButtonNote -> \
+\\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{
+  3.6631290586568403`*^9, {3.66312910180895*^9, 3.663129113502738*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None},
+  PlotRange->{{0, 30}, {0., 0.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.6631290586724787`*^9, {3.663129101815722*^9, 3.663129114073344*^9}}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Attempt 3: Placeholders", "Section",
+ CellChangeTimes->{{3.6631620857256403`*^9, 3.6631620920077753`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Grid", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"\"\<Inflow:\>\"", ",", 
+      RowBox[{"InputField", "[", 
+       RowBox[{"Dynamic", "[", "in", "]"}], "]"}], ",", 
+      RowBox[{"Dynamic", "[", "in", "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Outflow:\>\"", ",", 
+      RowBox[{"InputField", "[", 
+       RowBox[{"Dynamic", "[", "out", "]"}], "]"}], ",", 
+      RowBox[{"Dynamic", "[", "out", "]"}]}], "}"}]}], "}"}], "]"}]], "Input",\
+
+ CellChangeTimes->{{3.663162158549603*^9, 3.66316225256577*^9}, {
+  3.663162292127205*^9, 3.663162294038048*^9}, {3.663162359561479*^9, 
+  3.663162376980812*^9}, {3.6631625388001423`*^9, 3.6631625702141457`*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Inflow:\"\>", 
+     InputFieldBox[Dynamic[$CellContext`in]], 
+     DynamicBox[ToBoxes[$CellContext`in, StandardForm],
+      ImageSizeCache->{9., {0., 10.}}]},
+    {"\<\"Outflow:\"\>", 
+     InputFieldBox[Dynamic[$CellContext`out]], 
+     DynamicBox[ToBoxes[$CellContext`out, StandardForm],
+      ImageSizeCache->{148., {9., 14.}}]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{3.663163652980651*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.6631631411691504`*^9, 3.663163143316592*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{
+   RowBox[{"s", "=", 
+    RowBox[{"NDSolve", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"stocks", "'"}], "[", "t", "]"}], "\[Equal]", 
+          RowBox[{"(", 
+           RowBox[{"in", "-", "out"}], ")"}]}], "/.", 
+         RowBox[{"{", 
+          RowBox[{"level", "\[Rule]", " ", 
+           RowBox[{"stocks", "[", "t", "]"}]}], "}"}]}], ",", " ", 
+        RowBox[{
+         RowBox[{"stocks", "[", "0", "]"}], "\[Equal]", "0"}]}], "}"}], ",", 
+      "stocks", ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "30"}], "}"}]}], "]"}]}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"stocks", "[", "t", "]"}], " ", "/.", "s"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "30"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", " ", "Automatic"}]}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.663163165580536*^9, 3.6631633141344137`*^9}, {
+  3.663163373659861*^9, 3.663163381605142*^9}, {3.663163418020274*^9, 
+  3.663163446531836*^9}, {3.663163591142612*^9, 3.663163638043021*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[$CellContext`s = NDSolve[{
+       ReplaceAll[
+       Derivative[
+         1][$CellContext`stocks][$CellContext`t] == $CellContext`in - \
+$CellContext`out, {$CellContext`level -> \
+$CellContext`stocks[$CellContext`t]}], $CellContext`stocks[0] == 
+       0}, $CellContext`stocks, {$CellContext`t, 0, 30}]; Plot[
+     ReplaceAll[
+      $CellContext`stocks[$CellContext`t], $CellContext`s], {$CellContext`t, 
+      0, 30}, PlotRange -> All, AxesLabel -> Automatic], StandardForm],
+  ImageSizeCache->{360., {103., 109.}}]], "Output",
+ CellChangeTimes->{
+  3.663163273883533*^9, 3.66316331512134*^9, {3.663163359930398*^9, 
+   3.663163382593951*^9}, {3.663163419133582*^9, 3.663163448885572*^9}, {
+   3.663163598965643*^9, 3.6631636386783543`*^9}, 3.663167838306918*^9}]
+}, Closed]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Attempt 4: Multiple stocks", "Section",
+ CellChangeTimes->{{3.663164009503536*^9, 3.663164020958249*^9}, {
+  3.663164062711388*^9, 3.6631640734850397`*^9}, {3.66316419515499*^9, 
+  3.6631641980653677`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"stocksList", "=", 
+   RowBox[{"{", 
+    RowBox[{"rays", ",", "scallops"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"flowsList", "=", 
+   RowBox[{"{", 
+    RowBox[{"rBirth", ",", "rDeath", ",", "sBirth", ",", "sDeath"}], "}"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.663164211940604*^9, 3.663164270691638*^9}, {
+  3.663164476297274*^9, 3.663164478115539*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Grid", "[", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"i", "=", "i"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "i", "]"}], "<>", "\"\<:\>\""}], ",", 
+        RowBox[{"TraditionalForm", "[", 
+         RowBox[{"InputField", "[", 
+          RowBox[{"Dynamic", "[", "i", "]"}], "]"}], "]"}], ",", 
+        RowBox[{"Dynamic", "[", "i", "]"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "flowsList"}], "}"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.663162158549603*^9, 3.66316225256577*^9}, {
+  3.663162292127205*^9, 3.663162294038048*^9}, {3.663162359561479*^9, 
+  3.663162376980812*^9}, {3.6631625388001423`*^9, 3.6631625702141457`*^9}, {
+  3.6631644858105583`*^9, 3.663164623947328*^9}, {3.663165430883876*^9, 
+  3.6631654310578947`*^9}, {3.6631663728083277`*^9, 3.6631663848155823`*^9}, {
+  3.663166553708144*^9, 3.663166556219984*^9}, {3.6631666146412*^9, 
+  3.663166614804946*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"rBirth:\"\>", 
+     TagBox[
+      FormBox[
+       InputFieldBox[Dynamic[$CellContext`rBirth]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], 
+     DynamicBox[ToBoxes[$CellContext`rBirth, StandardForm],
+      ImageSizeCache->{18., {0., 10.}}]},
+    {"\<\"rDeath:\"\>", 
+     TagBox[
+      FormBox[
+       InputFieldBox[Dynamic[$CellContext`rDeath]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], 
+     DynamicBox[ToBoxes[$CellContext`rDeath, StandardForm],
+      ImageSizeCache->{61., {3., 9.}}]},
+    {"\<\"sBirth:\"\>", 
+     TagBox[
+      FormBox[
+       InputFieldBox[Dynamic[$CellContext`sBirth]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], 
+     DynamicBox[ToBoxes[$CellContext`sBirth, StandardForm],
+      ImageSizeCache->{27., {0., 10.}}]},
+    {"\<\"sDeath:\"\>", 
+     TagBox[
+      FormBox[
+       InputFieldBox[Dynamic[$CellContext`sDeath]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], 
+     DynamicBox[ToBoxes[$CellContext`sDeath, StandardForm],
+      ImageSizeCache->{128., {3., 10.}}]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{
+  3.6631646251221533`*^9, {3.663166379134592*^9, 3.663166385199465*^9}, 
+   3.6631665610554667`*^9, 3.663166615600869*^9, {3.6631666678162622`*^9, 
+   3.663166696755198*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{
+   RowBox[{"s", "=", 
+    RowBox[{"NDSolve", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"rays", "'"}], "[", "t", "]"}], "\[Equal]", 
+         RowBox[{"(", 
+          RowBox[{"rBirth", "-", "rDeath"}], ")"}]}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"scallops", "'"}], "[", "t", "]"}], "\[Equal]", 
+         RowBox[{"sBirth", "-", "sDeath"}]}], ",", " ", 
+        RowBox[{
+         RowBox[{"rays", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+        RowBox[{
+         RowBox[{"scallops", "[", "0", "]"}], "\[Equal]", "0"}]}], "}"}], ",",
+       "stocksList", ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "30"}], "}"}]}], "]"}]}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"i", "[", "t", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "stocksList"}], "}"}]}], "]"}], "/.", 
+       RowBox[{"s", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "30"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", " ", "Automatic"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{"ToString", ",", "stocksList"}], "]"}]}]}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.663163165580536*^9, 3.6631633141344137`*^9}, {
+   3.663163373659861*^9, 3.663163381605142*^9}, {3.663163418020274*^9, 
+   3.663163446531836*^9}, {3.663163591142612*^9, 3.663163638043021*^9}, 
+   3.66316412757777*^9, {3.663164280053915*^9, 3.663164305216523*^9}, {
+   3.66316433829837*^9, 3.663164390231804*^9}, {3.663164678339519*^9, 
+   3.663164714954628*^9}, {3.663164787248514*^9, 3.6631648004985*^9}, {
+   3.6631650007174063`*^9, 3.6631650017159233`*^9}, {3.663165032625688*^9, 
+   3.66316503892938*^9}, {3.6631653692252903`*^9, 3.6631653696280937`*^9}, {
+   3.6631654178267107`*^9, 3.6631655506387577`*^9}, {3.663165600044409*^9, 
+   3.663165609000482*^9}, {3.663165643739112*^9, 3.6631656449552317`*^9}, {
+   3.66316572267584*^9, 3.663165727456675*^9}, {3.6631657964132757`*^9, 
+   3.663165822955187*^9}, {3.663166039551819*^9, 3.663166147027441*^9}, {
+   3.663166235850307*^9, 3.663166241236786*^9}}],
+
+Cell[BoxData[
+ DynamicBox[
+  ToBoxes[$CellContext`s = 
+    NDSolve[{Derivative[
+        1][$CellContext`rays][$CellContext`t] == $CellContext`rBirth - \
+$CellContext`rDeath, 
+       Derivative[
+        1][$CellContext`scallops][$CellContext`t] == $CellContext`sBirth - \
+$CellContext`sDeath, $CellContext`rays[0] == 0, $CellContext`scallops[0] == 
+       0}, $CellContext`stocksList, {$CellContext`t, 0, 30}]; Plot[
+     Evaluate[
+      ReplaceAll[
+       Table[
+        $CellContext`i[$CellContext`t], {$CellContext`i, \
+$CellContext`stocksList}], 
+       Part[$CellContext`s, 1]]], {$CellContext`t, 0, 30}, PlotRange -> All, 
+     AxesLabel -> Automatic, PlotLegends -> 
+     Map[ToString, $CellContext`stocksList]], StandardForm],
+  ImageSizeCache->{459., {102., 106.}}]], "Output",
+ CellChangeTimes->{
+  3.663164305686942*^9, 3.6631643905128403`*^9, {3.663164700160532*^9, 
+   3.663164741844585*^9}, 3.663164800815282*^9, {3.663165039326004*^9, 
+   3.663165046425583*^9}, {3.6631653704992733`*^9, 3.663165380198016*^9}, 
+   3.663165518820383*^9, 3.6631655517540483`*^9, 3.663165609875248*^9, 
+   3.663165645612217*^9, 3.663165728811811*^9, {3.663165775392791*^9, 
+   3.6631658242850723`*^9}, {3.6631660853591623`*^9, 3.663166147503086*^9}, 
+   3.663166241767908*^9, 3.663166737137395*^9}]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Attempt 5: Multiple stocks", "Section",
+ CellChangeTimes->{{3.663164009503536*^9, 3.663164020958249*^9}, {
+   3.663164062711388*^9, 3.6631640734850397`*^9}, {3.66316419515499*^9, 
+   3.6631641980653677`*^9}, 3.6631678543163424`*^9}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"stocksList", "=", 
+   RowBox[{"{", 
+    RowBox[{"rays", ",", "scallops"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"flowsList", "=", 
+   RowBox[{"{", 
+    RowBox[{"rBirth", ",", "rDeath", ",", "sBirth", ",", "sDeath"}], "}"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.663164211940604*^9, 3.663164270691638*^9}, {
+  3.663164476297274*^9, 3.663164478115539*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Grid", "[", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"i", "=", "i"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"ToString", "[", "i", "]"}], "<>", "\"\<:\>\""}], ",", 
+        RowBox[{"TraditionalForm", "[", 
+         RowBox[{"InputField", "[", 
+          RowBox[{"Dynamic", "[", "i", "]"}], "]"}], "]"}], ",", 
+        RowBox[{"Dynamic", "[", "i", "]"}]}], "}"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "flowsList"}], "}"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.663162158549603*^9, 3.66316225256577*^9}, {
+  3.663162292127205*^9, 3.663162294038048*^9}, {3.663162359561479*^9, 
+  3.663162376980812*^9}, {3.6631625388001423`*^9, 3.6631625702141457`*^9}, {
+  3.6631644858105583`*^9, 3.663164623947328*^9}, {3.663165430883876*^9, 
+  3.6631654310578947`*^9}, {3.6631663728083277`*^9, 3.6631663848155823`*^9}, {
+  3.663166553708144*^9, 3.663166556219984*^9}, {3.6631666146412*^9, 
+  3.663166614804946*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"rBirth:\"\>", 
+     TagBox[
+      FormBox[
+       InputFieldBox[Dynamic[$CellContext`rBirth]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], 
+     DynamicBox[ToBoxes[$CellContext`rBirth, StandardForm],
+      ImageSizeCache->{18., {0., 10.}}]},
+    {"\<\"rDeath:\"\>", 
+     TagBox[
+      FormBox[
+       InputFieldBox[Dynamic[$CellContext`rDeath]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], 
+     DynamicBox[ToBoxes[$CellContext`rDeath, StandardForm],
+      ImageSizeCache->{61., {3., 9.}}]},
+    {"\<\"sBirth:\"\>", 
+     TagBox[
+      FormBox[
+       InputFieldBox[Dynamic[$CellContext`sBirth]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], 
+     DynamicBox[ToBoxes[$CellContext`sBirth, StandardForm],
+      ImageSizeCache->{27., {0., 10.}}]},
+    {"\<\"sDeath:\"\>", 
+     TagBox[
+      FormBox[
+       InputFieldBox[Dynamic[$CellContext`sDeath]],
+       TraditionalForm],
+      TraditionalForm,
+      Editable->True], 
+     DynamicBox[ToBoxes[$CellContext`sDeath, StandardForm],
+      ImageSizeCache->{128., {3., 10.}}]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{
+  3.6631646251221533`*^9, {3.663166379134592*^9, 3.663166385199465*^9}, 
+   3.6631665610554667`*^9, 3.663166615600869*^9, {3.6631666678162622`*^9, 
+   3.663166696755198*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{
+   RowBox[{"s", "=", 
+    RowBox[{"NDSolve", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"rays", "'"}], "[", "t", "]"}], "\[Equal]", 
+         RowBox[{"(", 
+          RowBox[{"rBirth", "-", "rDeath"}], ")"}]}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"scallops", "'"}], "[", "t", "]"}], "\[Equal]", 
+         RowBox[{"sBirth", "-", "sDeath"}]}], ",", " ", 
+        RowBox[{
+         RowBox[{"rays", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+        RowBox[{
+         RowBox[{"scallops", "[", "0", "]"}], "\[Equal]", "0"}]}], "}"}], ",",
+       "stocksList", ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "30"}], "}"}]}], "]"}]}], ";", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Evaluate", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"i", "[", "t", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "stocksList"}], "}"}]}], "]"}], "/.", 
+       RowBox[{"s", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "30"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+     RowBox[{"AxesLabel", "\[Rule]", " ", "Automatic"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", " ", 
+      RowBox[{"Map", "[", 
+       RowBox[{"ToString", ",", "stocksList"}], "]"}]}]}], "]"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.663163165580536*^9, 3.6631633141344137`*^9}, {
+   3.663163373659861*^9, 3.663163381605142*^9}, {3.663163418020274*^9, 
+   3.663163446531836*^9}, {3.663163591142612*^9, 3.663163638043021*^9}, 
+   3.66316412757777*^9, {3.663164280053915*^9, 3.663164305216523*^9}, {
+   3.66316433829837*^9, 3.663164390231804*^9}, {3.663164678339519*^9, 
+   3.663164714954628*^9}, {3.663164787248514*^9, 3.6631648004985*^9}, {
+   3.6631650007174063`*^9, 3.6631650017159233`*^9}, {3.663165032625688*^9, 
+   3.66316503892938*^9}, {3.6631653692252903`*^9, 3.6631653696280937`*^9}, {
+   3.6631654178267107`*^9, 3.6631655506387577`*^9}, {3.663165600044409*^9, 
+   3.663165609000482*^9}, {3.663165643739112*^9, 3.6631656449552317`*^9}, {
+   3.66316572267584*^9, 3.663165727456675*^9}, {3.6631657964132757`*^9, 
+   3.663165822955187*^9}, {3.663166039551819*^9, 3.663166147027441*^9}, {
+   3.663166235850307*^9, 3.663166241236786*^9}}],
+
+Cell[BoxData[
+ DynamicBox[
+  ToBoxes[$CellContext`s = 
+    NDSolve[{Derivative[
+        1][$CellContext`rays][$CellContext`t] == $CellContext`rBirth - \
+$CellContext`rDeath, 
+       Derivative[
+        1][$CellContext`scallops][$CellContext`t] == $CellContext`sBirth - \
+$CellContext`sDeath, $CellContext`rays[0] == 0, $CellContext`scallops[0] == 
+       0}, $CellContext`stocksList, {$CellContext`t, 0, 30}]; Plot[
+     Evaluate[
+      ReplaceAll[
+       Table[
+        $CellContext`i[$CellContext`t], {$CellContext`i, \
+$CellContext`stocksList}], 
+       Part[$CellContext`s, 1]]], {$CellContext`t, 0, 30}, PlotRange -> All, 
+     AxesLabel -> Automatic, PlotLegends -> 
+     Map[ToString, $CellContext`stocksList]], StandardForm],
+  ImageSizeCache->{459., {102., 106.}}]], "Output",
+ CellChangeTimes->{
+  3.663164305686942*^9, 3.6631643905128403`*^9, {3.663164700160532*^9, 
+   3.663164741844585*^9}, 3.663164800815282*^9, {3.663165039326004*^9, 
+   3.663165046425583*^9}, {3.6631653704992733`*^9, 3.663165380198016*^9}, 
+   3.663165518820383*^9, 3.6631655517540483`*^9, 3.663165609875248*^9, 
+   3.663165645612217*^9, 3.663165728811811*^9, {3.663165775392791*^9, 
+   3.6631658242850723`*^9}, {3.6631660853591623`*^9, 3.663166147503086*^9}, 
+   3.663166241767908*^9, 3.663166737137395*^9}]
+}, Open  ]]
+}, Closed]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{546, Automatic}, {Automatic, 10}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 106, 1, 65, "Section"],
+Cell[689, 25, 495, 12, 77, "Input"],
+Cell[1187, 39, 244, 5, 32, "Input"],
+Cell[CellGroupData[{
+Cell[1456, 48, 512, 14, 32, "Input"],
+Cell[1971, 64, 531, 11, 40, "Message"],
+Cell[2505, 77, 185, 3, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2727, 85, 1383, 35, 128, "Input"],
+Cell[4113, 122, 2251, 45, 310, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6413, 173, 100, 1, 65, "Section"],
+Cell[6516, 176, 189, 4, 31, "Text"],
+Cell[6708, 182, 1331, 34, 87, "Input"],
+Cell[8042, 218, 244, 5, 32, "Input"],
+Cell[CellGroupData[{
+Cell[8311, 227, 512, 14, 32, "Input"],
+Cell[8826, 243, 505, 10, 40, "Message"],
+Cell[9334, 255, 162, 3, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9533, 263, 3038, 67, 69, "Input"],
+Cell[12574, 332, 598, 12, 23, "Message"],
+Cell[13175, 346, 1461, 41, 84, "Output"],
+Cell[14639, 389, 752, 14, 27, "Message"],
+Cell[15394, 405, 2072, 34, 87, "Message"],
+Cell[17469, 441, 752, 14, 27, "Message"],
+Cell[18224, 457, 2112, 34, 86, "Message"],
+Cell[20339, 493, 747, 14, 27, "Message"],
+Cell[21089, 509, 613, 13, 23, "Message"],
+Cell[21705, 524, 2062, 33, 87, "Message"],
+Cell[23770, 559, 615, 13, 23, "Message"],
+Cell[24388, 574, 859, 25, 225, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[25296, 605, 112, 1, 51, "Section"],
+Cell[CellGroupData[{
+Cell[25433, 610, 740, 18, 55, "Input"],
+Cell[26176, 630, 541, 14, 74, "Output"]
+}, Open  ]],
+Cell[26732, 647, 94, 1, 32, "Input"],
+Cell[CellGroupData[{
+Cell[26851, 652, 1259, 34, 99, "Input"],
+Cell[28113, 688, 798, 15, 260, "Output"]
+}, Closed]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[28960, 709, 212, 3, 51, "Section"],
+Cell[29175, 714, 403, 11, 55, "Input"],
+Cell[CellGroupData[{
+Cell[29603, 729, 1066, 24, 99, "Input"],
+Cell[30672, 755, 1467, 45, 124, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32176, 805, 2438, 56, 143, "Input"],
+Cell[34617, 863, 1292, 26, 225, "Output"]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[35958, 895, 238, 3, 51, "Section"],
+Cell[36199, 900, 403, 11, 55, "Input"],
+Cell[CellGroupData[{
+Cell[36627, 915, 1066, 24, 99, "Input"],
+Cell[37696, 941, 1467, 45, 124, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39200, 991, 2438, 56, 143, "Input"],
+Cell[41641, 1049, 1292, 26, 225, "Output"]
+}, Open  ]]
+}, Closed]]
+}
+]
+*)
+
+(* End of internal cache information *)
