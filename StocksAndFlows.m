@@ -19,7 +19,7 @@ simpleStocks[stocksIn_]:=simpleStocks[stocksIn]=(stocks=If[!ListQ[stocksIn],{sto
 If[MatchQ[stocks,{_Rule..}], Transpose[stocks/.Rule->List][[1]], stocks]
 )
 
-FlowGUI[ stocksIn_] :=(
+FlowGUI[stocksIn_] :=(
 Panel[Dynamic[
 stocks = simpleStocks[stocksIn];
 Grid[Join[{{"Flow",SpanFromLeft,"Equation",SpanFromLeft,"Source","Destination"}},Table[With[{i=i},
@@ -32,19 +32,22 @@ PopupMenu[Dynamic[Flows[[i]][[4]]],Join[{Null},stocks]]
 }],{i,Length[Flows]}]],ItemStyle->{Automatic,{1->"Subsection"}}]]]  
 )
 
-RunODE[stocks_/;MatchQ[stocks,{(_Symbol->_)..}]] :=
+RunODE[stocks_/;MatchQ[stocks,{((_Symbol->_)..)|(_Symbol->_)}]] :=
 (stocksList=simpleStocks[stocks];
 Block[{t,eqns},
 
-eqns=Join[{stocksList[[1]]'[t]==(Flows[[1]][[2]]-Flows[[2]][[2]])},Table[i[0]==(i/.stocks),{i,stocksList}]];
+eqns=Join[{ (* Flows functions *)stocksList[[1]]'[t]==(Flows[[1]][[2]]-Flows[[2]][[2]])},
+ (* Initial conditions: *)Table[i[0]==(i/.stocks),{i,stocksList}]];
 NDSolve[eqns,stocksList,{t,0,30}]]
 )
 
 Off[Plot::argr] (* Prevents Mathematica from getting mad about feeding 1 argument to Plot *)
 Unprotect[Plot]
+
 Plot[fList_/;MatchQ[fList,{{_Symbol->_InterpolatingFunction}..}]]:= 
     Plot[Evaluate[Table[(i/.Rule->List)[[1]][[1]][t],{i,fList}]/.fList],Evaluate@Join[{t},(fList/.Rule->List)[[1]][[1]][[2]]["Domain"][[1]]],PlotRange->All,
-AxesLabel-> Automatic,PlotLegends-> Map[ToString,Table[(i/.Rule->List)[[1]][[1]],{i,fList}]]]
+AxesLabel-> Automatic, PlotLegends->If[Length[fList]>1, Map[ToString,Table[(i/.Rule->List)[[1]][[1]],{i,fList}]],None]]
+
 Protect[Plot]
 
 
