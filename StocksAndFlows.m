@@ -42,6 +42,12 @@ Plot[Evaluate[Table[i[t],{i,stocksList}]/.s[[1]]],{t,0,30},PlotRange->All,
 AxesLabel-> Automatic,PlotLegends-> Map[ToString,stocksList]]]
 )
 
+Unprotect[Plot]
+Plot[fList_/;MatchQ[fList,{{_Symbol->_InterpolatingFunction}..}]]:= 
+    Quiet@Plot[Evaluate[Table[(i/.Rule->List)[[1]][[1]][t],{i,fList}]/.fList],Evaluate@Join[{t},(fList/.Rule->List)[[1]][[1]][[2]]["Domain"][[1]]],PlotRange->All,
+AxesLabel-> Automatic,PlotLegends-> Map[ToString,Table[(i/.Rule->List)[[1]][[1]],{i,fList}]]]
+Protect[Plot]
+
 
  End[]
 

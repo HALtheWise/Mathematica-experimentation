@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     10192,        328]
-NotebookOptionsPosition[      8560,        265]
-NotebookOutlinePosition[      9025,        286]
-CellTagsIndexPosition[      8952,        281]
+NotebookDataLength[     10218,        329]
+NotebookOptionsPosition[      8586,        266]
+NotebookOutlinePosition[      9051,        287]
+CellTagsIndexPosition[      8978,        282]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -99,8 +99,9 @@ Cell[BoxData[
            Join[{Null}, Private`stocks]]}], {Private`i, 
          Length[StocksAndFlows`Flows]}]], 
       ItemStyle -> {Automatic, {1 -> "Subsection"}}], StandardForm],
-   ImageSizeCache->{500., {36., 42.}}]]], "Output",
- CellChangeTimes->{{3.6631879967435837`*^9, 3.6631879969263687`*^9}}]
+   ImageSizeCache->{462., {36., 42.}}]]], "Output",
+ CellChangeTimes->{{3.6631879967435837`*^9, 3.6631879969263687`*^9}, 
+   3.663191099813048*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -274,13 +275,13 @@ StyleDefinitions->"Default.nb"
 (*CellTagsOutline
 CellTagsIndex->{
  "FlowPersist"->{
-  Cell[4862, 139, 148, 5, 23, InheritFromParent,
+  Cell[4888, 140, 148, 5, 23, InheritFromParent,
    CellTags->"FlowPersist"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"FlowPersist", 8850, 275}
+ {"FlowPersist", 8876, 276}
  }
 *)
 (*NotebookFileOutline
@@ -297,38 +298,38 @@ Cell[1602, 49, 341, 8, 32, "Input",
 Cell[CellGroupData[{
 Cell[1968, 61, 280, 6, 32, "Input",
  InitializationCell->True],
-Cell[2251, 69, 1216, 33, 115, "Output"]
+Cell[2251, 69, 1242, 34, 115, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[3504, 107, 366, 7, 32, "Input"],
-Cell[3873, 116, 391, 7, 218, "Output"]
+Cell[3530, 108, 366, 7, 32, "Input"],
+Cell[3899, 117, 391, 7, 218, "Output"]
 }, Open  ]],
-Cell[4279, 126, 580, 11, 32, "Input"],
-Cell[4862, 139, 148, 5, 23, InheritFromParent,
+Cell[4305, 127, 580, 11, 32, "Input"],
+Cell[4888, 140, 148, 5, 23, InheritFromParent,
  CellTags->"FlowPersist"],
 Cell[CellGroupData[{
-Cell[5035, 148, 511, 15, 35, "Input"],
-Cell[5549, 165, 492, 10, 23, "Message"],
-Cell[6044, 177, 507, 15, 35, "Output"]
+Cell[5061, 149, 511, 15, 35, "Input"],
+Cell[5575, 166, 492, 10, 23, "Message"],
+Cell[6070, 178, 507, 15, 35, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6588, 197, 175, 4, 32, "Input"],
-Cell[6766, 203, 70, 1, 32, "Output"]
+Cell[6614, 198, 175, 4, 32, "Input"],
+Cell[6792, 204, 70, 1, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6873, 209, 244, 5, 32, "Input"],
-Cell[7120, 216, 244, 5, 32, "Output"]
+Cell[6899, 210, 244, 5, 32, "Input"],
+Cell[7146, 217, 244, 5, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7401, 226, 172, 3, 32, "Input"],
-Cell[7576, 231, 72, 1, 32, "Output"]
+Cell[7427, 227, 172, 3, 32, "Input"],
+Cell[7602, 232, 72, 1, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7685, 237, 344, 8, 32, "Input"],
-Cell[8032, 247, 260, 6, 32, "Output"]
+Cell[7711, 238, 344, 8, 32, "Input"],
+Cell[8058, 248, 260, 6, 32, "Output"]
 }, Open  ]],
-Cell[8307, 256, 69, 1, 32, "Input"],
-Cell[8379, 259, 165, 3, 32, "Input"]
+Cell[8333, 257, 69, 1, 32, "Input"],
+Cell[8405, 260, 165, 3, 32, "Input"]
 }, Open  ]]
 }
 ]
