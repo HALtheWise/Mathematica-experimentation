@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     21771,        554]
-NotebookOptionsPosition[     20005,        488]
-NotebookOutlinePosition[     20469,        509]
-CellTagsIndexPosition[     20395,        504]
+NotebookDataLength[     21908,        560]
+NotebookOptionsPosition[     20118,        492]
+NotebookOutlinePosition[     20582,        513]
+CellTagsIndexPosition[     20508,        508]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -31,15 +31,14 @@ Cell[TextData[{
 concept, but doesn\[CloseCurlyQuote]t include several things that will be \
 critical in whatever form this finally takes.\n- Saving the inputted data \
 after a kernel restart / save&open\n- Dynamically adding more stocks / flows \
-to the system\n- Actually using the values of the Source and Destination \
-fields\n- Prevent accidental execution of the flows input dialog\n- \
+to the system\n- Prevent accidental execution of the flows input dialog\n- \
 [optionally] Visualization as Stock/Flow diagram\n- Mangled Plot[] should \
 take Options and pass them on\n..."
 }], "Text",
  CellChangeTimes->{{3.663181037712491*^9, 3.663181076485979*^9}, {
-  3.663188904030593*^9, 3.663188960419849*^9}, {3.6631892918149242`*^9, 
-  3.6631893158592033`*^9}, {3.6632001615846033`*^9, 3.663200211236182*^9}, {
-  3.663204167320105*^9, 3.6632041785396757`*^9}}]
+   3.663188904030593*^9, 3.663188960419849*^9}, {3.6631892918149242`*^9, 
+   3.6631893158592033`*^9}, {3.6632001615846033`*^9, 3.663200211236182*^9}, {
+   3.663204167320105*^9, 3.6632041785396757`*^9}, 3.663205163270179*^9}]
 }, Open  ]],
 
 Cell["Usage", "Section",
@@ -65,6 +64,8 @@ Cell[BoxData[
   RowBox[{"myFunc", "[", "x_", "]"}], ":=", 
   RowBox[{"x", "+", "3"}]}]], "Input",
  CellChangeTimes->{{3.663201761298017*^9, 3.663201768787792*^9}}],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"FlowGUI", "[", 
@@ -106,8 +107,9 @@ Cell[BoxData[
            Join[{Null}, Private`stocks]]}], {Private`i, 
          Length[StocksAndFlows`Flows]}]], 
       ItemStyle -> {Automatic, {1 -> "Subsection"}}], StandardForm],
-   ImageSizeCache->{462., {36., 42.}}]]], "Input",
- CellChangeTimes->{3.66320127630757*^9}],
+   ImageSizeCache->{499., {36., 42.}}]]], "Output",
+ CellChangeTimes->{3.663204905623205*^9, 3.663204952570459*^9}]
+}, Open  ]],
 
 Cell[CellGroupData[{
 
@@ -124,15 +126,17 @@ Cell[BoxData[
    3.663202852813189*^9, 3.663202868800706*^9}, {3.663203412237063*^9, 
    3.6632034163530903`*^9}, 3.663203459205332*^9, {3.663203530553443*^9, 
    3.663203533381507*^9}, 3.663203726286707*^9, {3.663203871067779*^9, 
-   3.66320387637999*^9}, {3.663204061317432*^9, 3.663204076995315*^9}}],
+   3.66320387637999*^9}, {3.663204061317432*^9, 3.663204076995315*^9}, {
+   3.663204966398134*^9, 3.663204992532652*^9}}],
 
 Cell[BoxData[
  DynamicBox[ToBoxes[
    Plot[
     StocksAndFlows`RunODE[$CellContext`cat -> 5]], StandardForm],
-  ImageSizeCache->{802., {241., 247.}}]], "Output",
+  ImageSizeCache->{360., {99., 104.}}]], "Output",
  CellChangeTimes->{{3.6632038662908*^9, 3.66320387705503*^9}, {
-  3.663204069076593*^9, 3.663204077294437*^9}}]
+  3.663204069076593*^9, 3.663204077294437*^9}, {3.663204887317271*^9, 
+  3.663204992914109*^9}}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -497,64 +501,66 @@ StyleDefinitions->"Default.nb"
 (*CellTagsOutline
 CellTagsIndex->{
  "FlowPersist"->{
-  Cell[6408, 177, 148, 5, 23, InheritFromParent,
+  Cell[6521, 181, 148, 5, 23, InheritFromParent,
    CellTags->"FlowPersist"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"FlowPersist", 20293, 498}
+ {"FlowPersist", 20406, 502}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 93, 1, 65, "Section"],
-Cell[676, 25, 969, 16, 190, "Text"]
+Cell[676, 25, 926, 15, 170, "Text"]
 }, Open  ]],
-Cell[1660, 44, 90, 1, 65, "Section"],
+Cell[1617, 43, 90, 1, 65, "Section"],
 Cell[CellGroupData[{
-Cell[1775, 49, 92, 1, 51, "Section"],
-Cell[1870, 52, 341, 8, 32, "Input",
+Cell[1732, 48, 92, 1, 51, "Section"],
+Cell[1827, 51, 341, 8, 32, "Input",
  InitializationCell->True],
-Cell[2214, 62, 173, 4, 32, "Input"],
-Cell[2390, 68, 276, 6, 32, "Input",
+Cell[2171, 61, 173, 4, 32, "Input"],
+Cell[CellGroupData[{
+Cell[2369, 69, 276, 6, 32, "Input",
  InitializationCell->True],
-Cell[2669, 76, 1181, 33, 115, InheritFromParent],
-Cell[CellGroupData[{
-Cell[3875, 113, 818, 13, 32, "Input"],
-Cell[4696, 128, 273, 6, 503, "Output"]
+Cell[2648, 77, 1205, 33, 115, "Output"]
 }, Open  ]],
-Cell[4984, 137, 318, 5, 231, "Input"],
 Cell[CellGroupData[{
-Cell[5327, 146, 384, 12, 32, "Input"],
-Cell[5714, 160, 96, 1, 32, "Output"]
+Cell[3890, 115, 868, 14, 32, "Input"],
+Cell[4761, 131, 321, 7, 218, "Output"]
 }, Open  ]],
-Cell[5825, 164, 580, 11, 32, "Input"],
-Cell[6408, 177, 148, 5, 23, InheritFromParent,
+Cell[5097, 141, 318, 5, 231, "Input"],
+Cell[CellGroupData[{
+Cell[5440, 150, 384, 12, 32, "Input"],
+Cell[5827, 164, 96, 1, 32, "Output"]
+}, Open  ]],
+Cell[5938, 168, 580, 11, 32, "Input"],
+Cell[6521, 181, 148, 5, 23, InheritFromParent,
  CellTags->"FlowPersist"],
 Cell[CellGroupData[{
-Cell[6581, 186, 583, 16, 35, "Input"],
-Cell[7167, 204, 10829, 211, 65, "Output"]
+Cell[6694, 190, 583, 16, 35, "Input"],
+Cell[7280, 208, 10829, 211, 65, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18033, 420, 175, 4, 32, "Input"],
-Cell[18211, 426, 70, 1, 32, "Output"]
+Cell[18146, 424, 175, 4, 32, "Input"],
+Cell[18324, 430, 70, 1, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18318, 432, 244, 5, 32, "Input"],
-Cell[18565, 439, 244, 5, 32, "Output"]
+Cell[18431, 436, 244, 5, 32, "Input"],
+Cell[18678, 443, 244, 5, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18846, 449, 172, 3, 32, "Input"],
-Cell[19021, 454, 72, 1, 32, "Output"]
+Cell[18959, 453, 172, 3, 32, "Input"],
+Cell[19134, 458, 72, 1, 32, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[19130, 460, 344, 8, 32, "Input"],
-Cell[19477, 470, 260, 6, 32, "Output"]
+Cell[19243, 464, 344, 8, 32, "Input"],
+Cell[19590, 474, 260, 6, 32, "Output"]
 }, Open  ]],
-Cell[19752, 479, 69, 1, 32, "Input"],
-Cell[19824, 482, 165, 3, 32, "Input"]
+Cell[19865, 483, 69, 1, 32, "Input"],
+Cell[19937, 486, 165, 3, 32, "Input"]
 }, Open  ]]
 }
 ]

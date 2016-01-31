@@ -8,8 +8,10 @@ FlowGUI::usage =
 RunODE::usage = 
     "RunODE [stocks] executes NDSolve[] on the given stocks and flows."
 
+
 t
 Flows={{flow1,0,Null,Null},{flow2,0,Null,Null}}
+
 
 Begin[ "Private`"]
 
@@ -18,6 +20,7 @@ bug resulting in excessive CPU usage *)
 simpleStocks[stocksIn_]:=simpleStocks[stocksIn]=(stocks=If[!ListQ[stocksIn],{stocksIn},stocksIn];
 If[MatchQ[stocks,{_Rule..}], Transpose[stocks/.Rule->List][[1]], stocks]
 )
+
 
 FlowGUI[stocksIn_] :=(
 Panel[Dynamic[
@@ -32,14 +35,18 @@ PopupMenu[Dynamic[Flows[[i]][[4]]],Join[{Null},stocks]]
 }],{i,Length[Flows]}]],ItemStyle->{Automatic,{1->"Subsection"}}]]]  
 )
 
-RunODE[stocks_/;MatchQ[stocks,{((_Symbol->_)..)|(_Symbol->_)}]] :=
+
+RunODE[stocks_/;MatchQ[stocks,{((_Symbol->_)..)}|(_Symbol->_)]] :=
 (stocksList=simpleStocks[stocks];
 Block[{t,eqns},
 
-eqns=Join[{ (* Flows functions *)stocksList[[1]]'[t]==(Flows[[1]][[2]]-Flows[[2]][[2]])},
+eqns=Join[ (* Flows functions *)(*stocksList[[1]]'[t]==(Flows[[1]][[2]]-Flows[[2]][[2]])}*)
+Table[i'[t]==Total[Cases[Flows,{_,_,_,i}][[All,2]]]-Total[Cases[Flows,{_,_,i,_}][[All,2]]],{i,stocksList}],
  (* Initial conditions: *)Table[i[0]==(i/.stocks),{i,stocksList}]];
+Print[eqns];
 NDSolve[eqns,stocksList,{t,0,30}]]
 )
+
 
 Off[Plot::argr] (* Prevents Mathematica from getting mad about feeding 1 argument to Plot *)
 Unprotect[Plot]
@@ -51,7 +58,7 @@ AxesLabel-> Automatic, PlotLegends->If[Length[fList]>1, Map[ToString,Table[(i/.R
 Protect[Plot]
 
 
- End[]
+End[]
 
 EndPackage[]
 
