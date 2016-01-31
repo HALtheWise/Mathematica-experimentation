@@ -1,0 +1,337 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10192,        328]
+NotebookOptionsPosition[      8560,        265]
+NotebookOutlinePosition[      9025,        286]
+CellTagsIndexPosition[      8952,        281]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Status", "Section",
+ CellChangeTimes->{{3.6631810228249273`*^9, 3.663181029291233*^9}}],
+
+Cell[TextData[{
+ "This notebook implements a proof-of-concept for how to use ",
+ StyleBox["Mathematica",
+  FontSlant->"Italic"],
+ " for basic stock-flow modelling in ModSim. It is useful as a proof of \
+concept, but doesn\[CloseCurlyQuote]t include several things that will be \
+critical in whatever form this finally takes.\n- Saving the inputted data \
+after a kernel restart / save&open\n- Dynamically adding more stocks / flows \
+to the system\n- Actually using the values of the Source and Destination \
+fields\n..."
+}], "Text",
+ CellChangeTimes->{{3.663181037712491*^9, 3.663181076485979*^9}, {
+  3.663188904030593*^9, 3.663188960419849*^9}, {3.6631892918149242`*^9, 
+  3.6631893158592033`*^9}}]
+}, Open  ]],
+
+Cell["Usage", "Section",
+ CellChangeTimes->{{3.663181031688137*^9, 3.663181032318511*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Example", "Section",
+ CellChangeTimes->{{3.663181033642612*^9, 3.663181034882174*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Get", "[", 
+  RowBox[{
+   RowBox[{"NotebookDirectory", "[", "]"}], "<>", 
+   "\"\</StocksAndFlows.m\>\""}], "]"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.663175534385621*^9, 3.663175551079273*^9}, {
+  3.6631756297220793`*^9, 3.663175656865925*^9}, {3.663176124671764*^9, 
+  3.663176134870081*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FlowGUI", "[", 
+  RowBox[{"{", 
+   RowBox[{"cat", "\[Rule]", "0"}], "}"}], "]"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.663175668283938*^9, 3.663175678466248*^9}, {
+   3.663178209755548*^9, 3.663178217978262*^9}, 3.663178571310096*^9}],
+
+Cell[BoxData[
+ PanelBox[
+  DynamicBox[ToBoxes[
+   Private`stocks = Private`simpleStocks[{$CellContext`cat -> 0}]; Grid[
+      Join[{{
+        "Flow", SpanFromLeft, "Equation", SpanFromLeft, "Source", 
+         "Destination"}}, 
+       Table[
+        With[{Private`i = Private`i}, {
+          TraditionalForm[
+           Part[
+            Part[StocksAndFlows`Flows, Private`i], 1][StocksAndFlows`t]], "=", 
+          InputField[
+           Dynamic[
+            Part[
+             Part[StocksAndFlows`Flows, Private`i], 2]]], 
+          Dynamic[
+           TraditionalForm[
+            Part[
+             Part[StocksAndFlows`Flows, Private`i], 2]]], 
+          PopupMenu[
+           Dynamic[
+            Part[
+             Part[StocksAndFlows`Flows, Private`i], 3]], 
+           Join[{Null}, Private`stocks]], 
+          PopupMenu[
+           Dynamic[
+            Part[
+             Part[StocksAndFlows`Flows, Private`i], 4]], 
+           Join[{Null}, Private`stocks]]}], {Private`i, 
+         Length[StocksAndFlows`Flows]}]], 
+      ItemStyle -> {Automatic, {1 -> "Subsection"}}], StandardForm],
+   ImageSizeCache->{500., {36., 42.}}]]], "Output",
+ CellChangeTimes->{{3.6631879967435837`*^9, 3.6631879969263687`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"RunODE", "[", 
+   RowBox[{"{", 
+    RowBox[{"cat", "\[Rule]", "0"}], "}"}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.6631784211592627`*^9, 3.663178435369817*^9}, {
+  3.663181013371168*^9, 3.6631810172244577`*^9}, {3.663181201694895*^9, 
+  3.663181203504518*^9}, {3.6631831728991823`*^9, 3.663183175988488*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   StocksAndFlows`RunODE[{$CellContext`cat -> 0}], StandardForm],
+  ImageSizeCache->{427., {98., 103.}}]], "Output",
+ CellChangeTimes->{{3.6631791997096252`*^9, 3.663179218384708*^9}, {
+   3.663180979550622*^9, 3.663181017583426*^9}, 3.663181204025958*^9, 
+   3.663181282831379*^9, {3.663181868812056*^9, 3.663181880773265*^9}, 
+   3.6631831763290854`*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"CellPrint", "[", 
+  RowBox[{"Cell", "[", 
+   RowBox[{"\"\<Sin[x]\>\"", ",", 
+    RowBox[{"CellTags", "\[Rule]", 
+     RowBox[{"{", "\"\<FlowPersist\>\"", "}"}]}], ",", 
+    RowBox[{"Editable", "\[Rule]", "False"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.663176516497549*^9, 3.663176592224721*^9}, {
+  3.663176653113562*^9, 3.663176657881158*^9}, {3.6631766925450563`*^9, 
+  3.663176740516021*^9}, {3.663177417215148*^9, 3.663177441776761*^9}, {
+  3.6631775068863688`*^9, 3.6631775295534697`*^9}, {3.663177573766397*^9, 
+  3.6631775905803833`*^9}}],
+
+Cell["Sin[x]",
+ Editable->False,
+ GeneratedCell->True,
+ CellAutoOverwrite->True,
+ CellChangeTimes->{3.663177590965251*^9},
+ CellTags->"FlowPersist"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NDSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["cat", "\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", "2"}], ",", 
+     RowBox[{
+      RowBox[{"cat", "[", "0", "]"}], "\[Equal]", "Private`cat"}]}], "}"}], 
+   ",", 
+   RowBox[{"{", "cat", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "30"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.663178610189705*^9, 3.663178621128571*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"NDSolve", "::", "dvnoarg"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"The function \
+\[NoBreak]\\!\\(\\*RowBox[{\\\"Private`cat\\\"}]\\)\[NoBreak] appears with no \
+arguments. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\
+\\\", ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/NDSolve/dvnoarg\\\
+\", ButtonNote -> \\\"NDSolve::dvnoarg\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.663178611832601*^9}],
+
+Cell[BoxData[
+ RowBox[{"NDSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["Private`cat", "\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", "2"}], ",", 
+     RowBox[{
+      RowBox[{"Private`cat", "[", "0", "]"}], "\[Equal]", "Private`cat"}]}], 
+    "}"}], ",", 
+   RowBox[{"{", "cat", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"t", ",", "0", ",", "30"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.6631786118332577`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"cat", " ", "/.", 
+  RowBox[{"{", 
+   RowBox[{"cat", "\[Rule]", "0"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.6631786290982*^9, 3.66317864034063*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.663178640964562*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"mylist", "=", 
+  RowBox[{"{", 
+   RowBox[{"10", ",", "3"}], "}"}]}]], "Input",
+ CellChangeTimes->{{3.663182887333909*^9, 3.663182902427553*^9}, {
+   3.6631829409478827`*^9, 3.6631829438314047`*^9}, 3.663183044283276*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"10", ",", "3"}], "}"}]], "Output",
+ CellChangeTimes->{{3.6631828916586647`*^9, 3.6631829026834593`*^9}, {
+  3.663182938474259*^9, 3.663182944286067*^9}, {3.663183042134183*^9, 
+  3.6631830448494997`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"myLength", "=", "6"}]], "Input",
+ CellChangeTimes->{{3.663182912366704*^9, 3.663182933054648*^9}, {
+  3.66318300334277*^9, 3.6631830045914516`*^9}}],
+
+Cell[BoxData["6"], "Output",
+ CellChangeTimes->{3.6631830049058867`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"Refresh", "[", 
+   RowBox[{
+    RowBox[{"RandomReal", "[", "]"}], ",", 
+    RowBox[{"TrackedSymbols", "\[Rule]", 
+     RowBox[{"{", "mylist", "}"}]}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.663182833860475*^9, 3.6631829097429457`*^9}, {
+  3.663183032961218*^9, 3.663183033624548*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   Refresh[
+    RandomReal[], TrackedSymbols -> {$CellContext`mylist}], StandardForm],
+  ImageSizeCache->{72., {0., 10.}}]], "Output",
+ CellChangeTimes->{{3.663182884904451*^9, 3.66318291064818*^9}, 
+   3.663183033883407*^9}]
+}, Open  ]],
+
+Cell[BoxData["T"], "Input",
+ CellChangeTimes->{3.663182867157229*^9}],
+
+Cell[BoxData[
+ RowBox[{"Update", "[", 
+  RowBox[{"Unevaluated", "@", "mylist"}], "]"}]], "Input",
+ CellChangeTimes->{{3.663182983612935*^9, 3.6631830279336777`*^9}}]
+}, Open  ]]
+},
+WindowSize->{855, 968},
+WindowMargins->{{Automatic, 377}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "FlowPersist"->{
+  Cell[4862, 139, 148, 5, 23, InheritFromParent,
+   CellTags->"FlowPersist"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"FlowPersist", 8850, 275}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 93, 1, 65, "Section"],
+Cell[676, 25, 701, 13, 150, "Text"]
+}, Open  ]],
+Cell[1392, 41, 90, 1, 65, "Section"],
+Cell[CellGroupData[{
+Cell[1507, 46, 92, 1, 51, "Section"],
+Cell[1602, 49, 341, 8, 32, "Input",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[1968, 61, 280, 6, 32, "Input",
+ InitializationCell->True],
+Cell[2251, 69, 1216, 33, 115, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3504, 107, 366, 7, 32, "Input"],
+Cell[3873, 116, 391, 7, 218, "Output"]
+}, Open  ]],
+Cell[4279, 126, 580, 11, 32, "Input"],
+Cell[4862, 139, 148, 5, 23, InheritFromParent,
+ CellTags->"FlowPersist"],
+Cell[CellGroupData[{
+Cell[5035, 148, 511, 15, 35, "Input"],
+Cell[5549, 165, 492, 10, 23, "Message"],
+Cell[6044, 177, 507, 15, 35, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6588, 197, 175, 4, 32, "Input"],
+Cell[6766, 203, 70, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6873, 209, 244, 5, 32, "Input"],
+Cell[7120, 216, 244, 5, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7401, 226, 172, 3, 32, "Input"],
+Cell[7576, 231, 72, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7685, 237, 344, 8, 32, "Input"],
+Cell[8032, 247, 260, 6, 32, "Output"]
+}, Open  ]],
+Cell[8307, 256, 69, 1, 32, "Input"],
+Cell[8379, 259, 165, 3, 32, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

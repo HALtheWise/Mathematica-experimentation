@@ -1,0 +1,84 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2207,         75]
+NotebookOptionsPosition[      1881,         59]
+NotebookOutlinePosition[      2219,         74]
+CellTagsIndexPosition[      2176,         71]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"simpleStocks", "[", "stocksIn_", "]"}], ":=", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"stocks", "=", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"ListQ", "[", "stocksIn", "]"}]}], ",", 
+       RowBox[{"{", "stocksIn", "}"}], ",", "stocksIn"}], "]"}]}], ";", "\n", 
+    
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"MatchQ", "[", 
+       RowBox[{"stocks", ",", 
+        RowBox[{"{", 
+         RowBox[{"_Rule", ".."}], "}"}]}], "]"}], ",", " ", 
+      RowBox[{
+       RowBox[{"Transpose", "[", 
+        RowBox[{"stocks", "/.", 
+         RowBox[{"Rule", "->", "List"}]}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], ",", " ", "stocks"}], "]"}]}], "\n", 
+   ")"}]}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{3.66318399979665*^9}],
+
+Cell[BoxData[
+ RowBox[{"Panel", "[", "\[IndentingNewLine]", 
+  RowBox[{"Dynamic", "[", "\n", 
+   RowBox[{"stocks", "=", 
+    RowBox[{"simpleStocks", "[", 
+     RowBox[{"a", "\[Rule]", "3"}], "]"}]}], "]"}], "]"}]], "Input",
+ InitializationCell->True,
+ CellChangeTimes->{{3.663183458801991*^9, 3.663183551911743*^9}, {
+   3.663183630735581*^9, 3.663183659218203*^9}, {3.663183705577155*^9, 
+   3.663183741206484*^9}, {3.663183915749905*^9, 3.663183936663159*^9}, 
+   3.6631839714347363`*^9}]
+},
+WindowSize->{875, 1013},
+WindowMargins->{{Automatic, 217}, {Automatic, -8}},
+FrontEndVersion->"10.3 for Linux x86 (64-bit) (October 9, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 826, 25, 77, "Input",
+ InitializationCell->True],
+Cell[1387, 47, 490, 10, 77, "Input",
+ InitializationCell->True]
+}
+]
+*)
+
+(* End of internal cache information *)
