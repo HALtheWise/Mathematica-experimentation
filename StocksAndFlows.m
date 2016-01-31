@@ -36,8 +36,8 @@ RunODE[stocks_] :=
 (stocksList=simpleStocks[stocks];
 Block[{t,eqns},
 
-eqns={stocksList[[1]]'[t]==(Flows[[1]][[2]]-Flows[[2]][[2]]), stocksList[[1]][0]==0};
-s=NDSolve[eqns,stocksList,{t,0,30}];
+eqns=Join[{stocksList[[1]]'[t]==(Flows[[1]][[2]]-Flows[[2]][[2]])},Table[i[0]==(i/.stocks),{i,stocksList}]];
+NDSolve[eqns,stocksList,{t,0,30}]]
 )
 
 Off[Plot::argr] (* Prevents Mathematica from getting mad about feeding 1 argument to Plot *)
