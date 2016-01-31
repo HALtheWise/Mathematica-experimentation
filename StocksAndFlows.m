@@ -29,7 +29,7 @@ FlowGUI[stocksIn_/;MatchQ[stocksIn,({_Symbol..})|(_Symbol)]] :=(
 CellPrint@ExpressionCell[Panel[Dynamic[
 stocks = simpleStocks[stocksIn];
 Grid[Join[{{"Flow",SpanFromLeft,"Equation",SpanFromLeft,"Source","Destination"}},Table[With[{i=i},
-{TraditionalForm[Flows[[i]][[1]][t]],
+{InputField[Dynamic[Flows[[i]][[1]]], FieldSize->6, Alignment->Right, FieldHint->"flowName"][t],
 "=",
 InputField@Dynamic[Flows[[i]][[2]]],
 Dynamic[TraditionalForm@Flows[[i]][[2]]],
