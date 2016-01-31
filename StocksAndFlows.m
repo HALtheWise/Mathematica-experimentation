@@ -23,7 +23,7 @@ If[MatchQ[stocks,{_Rule..}], Transpose[stocks/.Rule->List][[1]], stocks]
 
 
 FlowGUI[stocksIn_] :=(
-Panel[Dynamic[
+CellPrint@ExpressionCell[Panel[Dynamic[
 stocks = simpleStocks[stocksIn];
 Grid[Join[{{"Flow",SpanFromLeft,"Equation",SpanFromLeft,"Source","Destination"}},Table[With[{i=i},
 {TraditionalForm[Flows[[i]][[1]][t]],
@@ -32,8 +32,8 @@ InputField@Dynamic[Flows[[i]][[2]]],
 Dynamic[TraditionalForm@Flows[[i]][[2]]],
 PopupMenu[Dynamic[Flows[[i]][[3]]],Join[{Null},stocks]],
 PopupMenu[Dynamic[Flows[[i]][[4]]],Join[{Null},stocks]]
-}],{i,Length[Flows]}]],ItemStyle->{Automatic,{1->"Subsection"}}]]]  
-)
+}],{i,Length[Flows]}]],ItemStyle->{Automatic,{1->"Subsection"}}]]]
+,TextAlignment->Center])
 
 
 RunODE[stocks_/;MatchQ[stocks,{((_Symbol->_)..)}|(_Symbol->_)]] :=
@@ -43,7 +43,6 @@ Block[{t,eqns},
 eqns=Join[ (* Flows functions *)(*stocksList[[1]]'[t]==(Flows[[1]][[2]]-Flows[[2]][[2]])}*)
 Table[i'[t]==Total[Cases[Flows,{_,_,_,i}][[All,2]]]-Total[Cases[Flows,{_,_,i,_}][[All,2]]],{i,stocksList}],
  (* Initial conditions: *)Table[i[0]==(i/.stocks),{i,stocksList}]];
-Print[eqns];
 NDSolve[eqns,stocksList,{t,0,30}]]
 )
 
