@@ -32,7 +32,7 @@ PopupMenu[Dynamic[Flows[[i]][[4]]],Join[{Null},stocks]]
 }],{i,Length[Flows]}]],ItemStyle->{Automatic,{1->"Subsection"}}]]]  
 )
 
-RunODE[stocks_] :=
+RunODE[stocks_/;MatchQ[stocks,{(_Symbol->_)..}]] :=
 (stocksList=simpleStocks[stocks];
 Block[{t,eqns},
 
