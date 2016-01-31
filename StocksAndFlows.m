@@ -8,9 +8,10 @@ FlowGUI::usage =
 RunODE::usage = 
     "RunODE [stocks] executes NDSolve[] on the given stocks and flows."
 
+InitT[outerT_]:=(t=outerT;)
 
-t
-Flows={{flow1,0,Null,Null},{flow2,0,Null,Null}}
+
+Flows={}
 
 
 Begin[ "Private`"]
@@ -22,7 +23,9 @@ If[MatchQ[stocks,{_Rule..}], Transpose[stocks/.Rule->List][[1]], stocks]
 )
 
 
-FlowGUI[stocksIn_] :=(
+FlowGUI[stocksIn_/;MatchQ[stocksIn,({_Symbol..})|(_Symbol)]] :=(
+
+
 CellPrint@ExpressionCell[Panel[Dynamic[
 stocks = simpleStocks[stocksIn];
 Grid[Join[{{"Flow",SpanFromLeft,"Equation",SpanFromLeft,"Source","Destination"}},Table[With[{i=i},
@@ -60,6 +63,11 @@ Protect[Plot]
 End[]
 
 EndPackage[]
+
+
+(* Temporary defaults until loading works properly *)
+Flows={{rainfall,3 (1+Sin[t]),Null,lakeLevel},{outflow,Max[0,1/5 (-10+lakeLevel[t])],lakeLevel,Null}};
+InitT[t];
 
 
 
