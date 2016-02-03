@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     23473,        589]
-NotebookOptionsPosition[     21535,        517]
-NotebookOutlinePosition[     22030,        539]
-CellTagsIndexPosition[     21956,        534]
+NotebookDataLength[     27385,        708]
+NotebookOptionsPosition[     25095,        624]
+NotebookOutlinePosition[     25591,        646]
+CellTagsIndexPosition[     25517,        641]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -51,6 +51,111 @@ Cell[CellGroupData[{
 
 Cell["Example", "Section",
  CellChangeTimes->{{3.663181033642612*^9, 3.663181034882174*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Define flows", "Subsection",
+ CellChangeTimes->{{3.663425352592984*^9, 3.663425360626398*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "lakeLevel", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"inflow", "[", "t_", "]"}], " ", ":=", " ", 
+  RowBox[{"10", 
+   RowBox[{"(", 
+    RowBox[{"1", "+", 
+     RowBox[{"Sin", "[", "t", "]"}]}], ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"evaporation", "[", "t_", "]"}], " ", ":=", " ", 
+  "2"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"outflow", "[", "t_", "]"}], " ", ":=", " ", 
+   RowBox[{
+    RowBox[{"lakeLevel", "[", "t", "]"}], "-", "20"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"diffEQs", " ", "=", " ", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"lakeLevel", "'"}], "[", "t", "]"}], "\[Equal]", " ", 
+    RowBox[{
+     RowBox[{"inflow", "[", "t", "]"}], "-", 
+     RowBox[{"evaporation", "[", "t", "]"}], "-", 
+     RowBox[{"outflow", "[", "t", "]"}]}]}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{"initialConditions", "=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"lakeLevel", "[", "0", "]"}], "\[Equal]", "20"}], 
+   "\[IndentingNewLine]", "}"}]}]}], "Input",
+ CellChangeTimes->{{3.663425366928521*^9, 3.6634254250432262`*^9}, {
+  3.663425463195063*^9, 3.6634254783855467`*^9}, {3.663425515838895*^9, 
+  3.6634255191207333`*^9}, {3.663425670965987*^9, 3.663425683920583*^9}, {
+  3.6634257491421337`*^9, 3.663425901979335*^9}, {3.663425937975683*^9, 
+  3.6634259735068274`*^9}, {3.663426134532446*^9, 3.663426137888152*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["lakeLevel", "\[Prime]",
+     MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+   RowBox[{"18", "-", 
+    RowBox[{"lakeLevel", "[", "t", "]"}], "+", 
+    RowBox[{"10", " ", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"Sin", "[", "t", "]"}]}], ")"}]}]}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6634259253527117`*^9, 3.663425975185416*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"lakeLevel", "[", "0", "]"}], "\[Equal]", "20"}], "}"}]], "Output",\
+
+ CellChangeTimes->{{3.6634259253527117`*^9, 3.6634259751862087`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"solution", "=", 
+  RowBox[{"DSolve", "[", 
+   RowBox[{
+    RowBox[{"Join", "[", 
+     RowBox[{"diffEQs", ",", "initialConditions"}], "]"}], ",", "lakeLevel", 
+    ",", 
+    RowBox[{"{", 
+     RowBox[{"t", ",", "0", ",", "100"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.663425527673647*^9, 3.66342565447742*^9}, {
+  3.663425992458365*^9, 3.663425994789824*^9}, {3.66342603657026*^9, 
+  3.6634260698393*^9}, {3.663426107353932*^9, 3.663426116013685*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"lakeLevel", "\[Rule]", 
+    RowBox[{"Function", "[", 
+     RowBox[{
+      RowBox[{"{", "t", "}"}], ",", 
+      RowBox[{"28", "-", 
+       RowBox[{"3", " ", 
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"-", "t"}]]}], "-", 
+       RowBox[{"5", " ", 
+        RowBox[{"Cos", "[", "t", "]"}]}], "+", 
+       RowBox[{"5", " ", 
+        RowBox[{"Sin", "[", "t", "]"}]}]}]}], "]"}]}], "}"}], "}"}]], "Output",\
+
+ CellChangeTimes->{{3.663425617190394*^9, 3.6634256857755747`*^9}, 
+   3.663425995337846*^9, {3.663426037284348*^9, 3.663426070177006*^9}, 
+   3.663426116421073*^9}]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{"Get", "[", 
@@ -107,10 +212,10 @@ Cell[BoxData[
            Join[{Null}, Private`stocks]]}], {Private`i, 
          Length[StocksAndFlows`Flows]}]], 
       ItemStyle -> {Automatic, {1 -> "Subsection"}}], StandardForm],
-   ImageSizeCache->{930., {55.5, 63.5}}]]],
+   ImageSizeCache->{982., {55.5, 63.5}}]]],
  GeneratedCell->True,
  CellAutoOverwrite->True,
- CellChangeTimes->{3.66320832449702*^9},
+ CellChangeTimes->{3.663425340452829*^9},
  TextAlignment->Center],
 
 Cell[BoxData[
@@ -146,13 +251,14 @@ Cell[BoxData[
  DynamicBox[ToBoxes[
    Plot[
     StocksAndFlows`RunODE[{$CellContext`lakeLevel -> 0}]], StandardForm],
-  ImageSizeCache->{1230., {369., 379.}}]], "Output",
+  ImageSizeCache->{540., {154., 165.}}]], "Output",
  CellChangeTimes->{{3.6632038662908*^9, 3.66320387705503*^9}, {
    3.663204069076593*^9, 3.663204077294437*^9}, {3.663204887317271*^9, 
    3.663204992914109*^9}, 3.663205236172533*^9, {3.663206341472434*^9, 
    3.663206360055663*^9}, 3.663206710418963*^9, 3.663206775462504*^9, 
    3.663207339974565*^9, 3.663207530121852*^9, 3.663207888273402*^9, 
-   3.663207968734797*^9, {3.663208261042652*^9, 3.6632083268891277`*^9}}]
+   3.663207968734797*^9, {3.663208261042652*^9, 3.6632083268891277`*^9}, 
+   3.663425340259836*^9}]
 }, Open  ]],
 
 Cell[BoxData[
@@ -514,6 +620,7 @@ Cell[BoxData[
   RowBox[{"Unevaluated", "@", "mylist"}], "]"}]], "Input",
  CellChangeTimes->{{3.663182983612935*^9, 3.6631830279336777`*^9}}]
 }, Open  ]]
+}, Open  ]]
 },
 WindowSize->{1920, 1014},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
@@ -527,69 +634,81 @@ StyleDefinitions->"Default.nb"
 (*CellTagsOutline
 CellTagsIndex->{
  "FlowPersist"->{
-  Cell[7938, 206, 148, 5, 34, InheritFromParent,
+  Cell[11486, 312, 148, 5, 51, InheritFromParent,
    CellTags->"FlowPersist"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"FlowPersist", 21854, 528}
+ {"FlowPersist", 25414, 635}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 93, 1, 96, "Section"],
-Cell[676, 25, 1129, 18, 273, "Text"]
+Cell[676, 25, 1129, 18, 409, "Text"]
 }, Closed]],
 Cell[1820, 46, 90, 1, 73, "Section"],
 Cell[CellGroupData[{
 Cell[1935, 51, 92, 1, 73, "Section"],
-Cell[2030, 54, 341, 8, 45, "Input",
- InitializationCell->True],
-Cell[2374, 64, 681, 11, 45, "Input",
- InitializationCell->True],
-Cell[3058, 77, 1252, 36, 162, InheritFromParent],
-Cell[4313, 115, 220, 3, 191, "Input"],
 Cell[CellGroupData[{
-Cell[4558, 122, 1130, 20, 45, "Input",
- InitializationCell->True],
-Cell[5691, 144, 593, 10, 770, "Output"]
-}, Open  ]],
-Cell[6299, 157, 318, 5, 307, "Input"],
+Cell[2052, 56, 100, 1, 67, "Subsection"],
 Cell[CellGroupData[{
-Cell[6642, 166, 94, 1, 48, "Input"],
-Cell[6739, 169, 81, 1, 48, "Output"]
+Cell[2177, 61, 1561, 38, 365, "Input"],
+Cell[3741, 101, 435, 12, 45, "Output"],
+Cell[4179, 115, 190, 5, 45, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[6857, 175, 384, 12, 48, "Input"],
-Cell[7244, 189, 96, 1, 48, "Output"]
+Cell[4406, 125, 486, 11, 45, "Input"],
+Cell[4895, 138, 642, 18, 52, "Output"]
 }, Open  ]],
-Cell[7355, 193, 580, 11, 48, "Input"],
-Cell[7938, 206, 148, 5, 34, InheritFromParent,
+Cell[5552, 159, 341, 8, 45, "Input",
+ InitializationCell->True],
+Cell[5896, 169, 681, 11, 45, "Input",
+ InitializationCell->True],
+Cell[6580, 182, 1253, 36, 162, InheritFromParent],
+Cell[7836, 220, 220, 3, 191, "Input"],
+Cell[CellGroupData[{
+Cell[8081, 227, 1130, 20, 45, "Input",
+ InitializationCell->True],
+Cell[9214, 249, 618, 11, 341, "Output"]
+}, Open  ]],
+Cell[9847, 263, 318, 5, 307, "Input"],
+Cell[CellGroupData[{
+Cell[10190, 272, 94, 1, 45, "Input"],
+Cell[10287, 275, 81, 1, 45, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10405, 281, 384, 12, 45, "Input"],
+Cell[10792, 295, 96, 1, 45, "Output"]
+}, Open  ]],
+Cell[10903, 299, 580, 11, 72, "Input"],
+Cell[11486, 312, 148, 5, 51, InheritFromParent,
  CellTags->"FlowPersist"],
 Cell[CellGroupData[{
-Cell[8111, 215, 583, 16, 52, "Input"],
-Cell[8697, 233, 10829, 211, 97, "Output"]
+Cell[11659, 321, 583, 16, 78, "Input"],
+Cell[12245, 339, 10829, 211, 145, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[19563, 449, 175, 4, 48, "Input"],
-Cell[19741, 455, 70, 1, 48, "Output"]
+Cell[23111, 555, 175, 4, 72, "Input"],
+Cell[23289, 561, 70, 1, 72, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[19848, 461, 244, 5, 48, "Input"],
-Cell[20095, 468, 244, 5, 48, "Output"]
+Cell[23396, 567, 244, 5, 72, "Input"],
+Cell[23643, 574, 244, 5, 72, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20376, 478, 172, 3, 48, "Input"],
-Cell[20551, 483, 72, 1, 48, "Output"]
+Cell[23924, 584, 172, 3, 72, "Input"],
+Cell[24099, 589, 72, 1, 72, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[20660, 489, 344, 8, 48, "Input"],
-Cell[21007, 499, 260, 6, 48, "Output"]
+Cell[24208, 595, 344, 8, 72, "Input"],
+Cell[24555, 605, 260, 6, 72, "Output"]
 }, Open  ]],
-Cell[21282, 508, 69, 1, 48, "Input"],
-Cell[21354, 511, 165, 3, 48, "Input"]
+Cell[24830, 614, 69, 1, 72, "Input"],
+Cell[24902, 617, 165, 3, 72, "Input"]
+}, Open  ]]
 }, Open  ]]
 }
 ]
